@@ -67,8 +67,24 @@ void opcontrol() {
 	pros::Motor leftBase2(2, E_MOTOR_GEARSET_18, 0, E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rightBase1(3, E_MOTOR_GEARSET_18, 1, E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rightBase2(4, E_MOTOR_GEARSET_18, 1, E_MOTOR_ENCODER_DEGREES);
+	pros::Motor Intake1(19, E_MOTOR_GEARSET_18, 0, E_MOTOR_ENCODER_DEGREES);
+	pros::Motor Intake2(20, E_MOTOR_GEARSET_18, 1, E_MOTOR_ENCODER_DEGREES);
+	pros::Motor Tray(20, E_MOTOR_GEARSET_18, 1, E_MOTOR_ENCODER_DEGREES);
+	
 	while (true) {
 		runLeftBase(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-		runRightBase(master.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y));B
+		runRightBase(master.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y));
+		if(master.get_digital(E_CONTROLLER_DIGITAL_R1))
+			runIntake(115);
+		else if(master.get_digital(E_CONTROLLER_DIGITAL_R2)
+			runIntake(-115);
+		else
+			runIntake(0);
+		if(master.get_digital(E_CONTROLLER_DIGITAL_L1))
+			runTray(115);
+		else if(master.get_digital(E_CONTROLLER_DIGITAL_L2)
+			runTray(-115);
+		else
+			runTray(0);
+
 	}
-}
