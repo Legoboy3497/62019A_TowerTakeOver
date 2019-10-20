@@ -86,5 +86,4 @@ void opcontrol() {
 			runTray(-115);
 		else
 			runTray(0);
-
 	}
